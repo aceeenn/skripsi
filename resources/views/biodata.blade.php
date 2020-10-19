@@ -12,7 +12,6 @@
     <a href="https://twitter.com/mangkus_">My Twitter</a>
 
     <br>
-
     <p>Nama : {{$nama}}</p>
 
     <p>Hobby : </p>
