@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('halo', function () {
+    return 'Haloooo, selamat datang di web belajar pertama saya';
+});
+
+Route::get('blog', function () {
+    return view('blog');
+});
+
+Route::get('dosen', 'DosenController@index');
