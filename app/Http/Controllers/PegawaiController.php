@@ -8,13 +8,18 @@ use Illuminate\Support\Facades\DB;
 
 class PegawaiController extends Controller 
 {
-    public function index (){
+    public function index(){
 
-        //mengambil data dari database, table pegawai
+        //untuk mengambil data dari database, table pegawai 
         $pegawai = DB::table('pegawai')->get();
 
         //mengirim data pegawai ke view index
-        return view('index',['pegawai' => $pegawai]);
+        return view ('index', ['pegawai' => $pegawai]);
+    }
+
+    public function tambah(){
+
+        return view ('tambah');
     }
 
     public function formulir (){
