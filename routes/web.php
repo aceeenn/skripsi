@@ -13,7 +13,7 @@
 
 //route bawaan dari laravel
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
 
 Route::get('halo', function () {
@@ -32,8 +32,10 @@ Route::get('/formulir', 'PegawaiController@formulir');
 
 Route::post('/formulir/proses', 'PegawaiController@proses');
 
-Route::get('/blog/', 'BlogController@home');
+Route::get('/blog', 'BlogController@home');
 
 Route::get('/blog/tentang', 'BlogController@tentang');
 
 Route::get('/blog/kontak', 'BlogController@kontak');
+
+Route::get('/pegawai', 'PegawaiController@index');
