@@ -11,7 +11,7 @@
 
 <body>
 
-    <h2><a href="https://twitter.com/mangkus_">Tuitter Saya</h2>
+    <h2><a href="https://twitter.com/mangkus_">Tuitter Saya </a></h2>
     <h3>Edit Pegawai</h3>
 
     <a href="/pegawai"> Kembali</a>
