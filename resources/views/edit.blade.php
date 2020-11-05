@@ -17,6 +17,7 @@
     <a href="/pegawai"> Kembali</a>
 
     <br/>
+    <br/> 
     <br/>
 
     @foreach($pegawai as $p)
