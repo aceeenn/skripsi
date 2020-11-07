@@ -33,6 +33,7 @@ class PegawaiController extends Controller
             'pegawai_alamat' =>$request->alamat
         ]);
 
+        //kembali ke halaman /pegawai
         return redirect ('/pegawai');
     }
 
@@ -48,6 +49,7 @@ class PegawaiController extends Controller
 
     public function update(Request $request){
 
+        //mengupdate database table pegawai , berdasarkan id yg di pilih
         DB::table('pegawai')->where ('pegawai_id', $request->id)->update([
             'pegawai_nama' => $request->nama,
             'pegawai_jabatan' =>$request->jabatan,
@@ -56,9 +58,28 @@ class PegawaiController extends Controller
 
         ]);
 
+        //kembali ke halaman /pegawai
         return redirect ('/pegawai');
 
     }
+
+    public function hapus ($id){
+
+        //menghapus database table pegawai , berdasarkan id yg di pilih
+        DB::table('pegawai')->where('pegawai_id', $id)->delete();
+
+        //kembali ke halaman /pegawai
+        return redirect ('/pegawai');
+    }
+
+
+
+
+
+
+
+
+
 
     public function formulir (){
 

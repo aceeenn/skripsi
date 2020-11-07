@@ -13,7 +13,7 @@
 
 //route bawaan dari laravel
 Route::get('/', function () {
-    return view('home.index');
+    return view('home.index22');
 });
 
 Route::get('halo', function () {
@@ -47,3 +47,5 @@ Route::post('/pegawai/store', 'PegawaiController@store');
 Route::get('/pegawai/edit/{id}', 'PegawaiController@edit');
 
 Route::post('/pegawai/update', 'PegawaiController@update');
+
+Route::get('/pegawai/hapus/{id}', 'PegawaiController@hapus');
