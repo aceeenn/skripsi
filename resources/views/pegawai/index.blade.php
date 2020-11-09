@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Belajar Laravel</title>
+    <title>CRUD pegawai</title>
 
 </head>
 
 <body>
 
-    <h2>Selamat Datang</h2>
     <h3>Data Pegawai</h3>
+    <a href="/mahasiswa">MAHASISWA</a>
+    |
+    <a href="/">HOME</a>
+    <br/>
+    <br/>
+    <br/>
+    
 
-    <a href="/pegawai/tambah"> + Tambah Pegawai Baru</a>
+    <a href="/pegawai/tambah"> Tambah Pegawai Baru Disini cuy</a>
 
     <br/>
     <br/>
@@ -36,7 +42,7 @@
             <td>{{ $p->pegawai_alamat }}</td>
             <td>
                 <a href="/pegawai/edit/{{ $p->pegawai_id }}">Edit</a>
-                
+                |
                 <a href="/pegawai/hapus/{{ $p->pegawai_id }}">Hapus</a>
             </td>
         </tr>

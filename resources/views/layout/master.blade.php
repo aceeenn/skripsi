@@ -28,6 +28,14 @@
             <li class="nav-item active">
                 <a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
             </li>
+
+            <li class="nav-item active">
+              <a class="nav-link" href="/pegawai">Pegawai <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item active">
+              <a class="nav-link" href="/mahasiswa">Mahasiswa <span class="sr-only">(current)</span></a>
+            </li>
             
           </ul>
         </div>

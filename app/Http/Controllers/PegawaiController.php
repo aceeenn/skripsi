@@ -14,12 +14,12 @@ class PegawaiController extends Controller
         $pegawai = DB::table('pegawai')->get();
 
         //mengirim data pegawai ke view index
-        return view ('index', ['pegawai' => $pegawai]);
+        return view ('pegawai.index', ['pegawai' => $pegawai]);
     }
 
     public function tambah(){
 
-        return view ('tambah');
+        return view ('pegawai.tambah');
         
     }
 
@@ -43,7 +43,7 @@ class PegawaiController extends Controller
         $pegawai = DB::table('pegawai')->where('pegawai_id', $id)->get();
 
         //passing database table pegawai, yg di dapat ke view.blade.php
-        return view ('edit', ['pegawai' => $pegawai]);
+        return view ('pegawai.edit', ['pegawai' => $pegawai]);
 
     }
 
@@ -72,12 +72,16 @@ class PegawaiController extends Controller
         return redirect ('/pegawai');
     }
 
+    //--------batas coding beda----------
 
 
 
 
 
 
+
+
+//--------batas coding beda----------
 
 
 
