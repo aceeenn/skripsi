@@ -54,6 +54,21 @@ Route::post('/pegawai/update', 'PegawaiController@update');
 
 Route::get('/pegawai/hapus/{id}', 'PegawaiController@hapus');
 
+Route::get('/pegawai/cari', 'PegawaiController@cari');
+
 
 //CRUD mahasiswa
 Route::get('/mahasiswa', 'MahasiswaController@index');
+
+Route::get('/mahasiswa/tambah', 'MahasiswaController@tambah');
+
+Route::post('/mahasiswa/store', 'MahasiswaController@store');
+
+Route::get('/mahasiswa/edit/{id}', 'MahasiswaController@edit');
+
+Route::post('/mahasiswa/update', 'MahasiswaController@update');
+
+Route::get('/mahasiswa/hapus/{id}', 'MahasiswaController@hapus');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

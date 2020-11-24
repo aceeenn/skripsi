@@ -7,32 +7,61 @@
 
     <title>Sedang Belajar CRUD Laravel</title>
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}"> 
+
 </head>
 
 <body>
 
-    <h2><a href="https://twitter.com/mangkus_">Tuitter Saya </a></h2>
-    <h3>Edit Pegawai</h3>
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header text-center">
+                <h2><strong>Edit Pegawai - </strong> <a href="https://twitter.com/mangkus_">Tuitter Saya</a></h2>
+                <br/>
 
-    <a href="/pegawai"> Kembali</a>
+            </div>
 
-    <br/>
-    <br/> 
-    <br/>
+                <div class="card-body text-md-left">
+                    <a class="btn btn-primary" href="/pegawai"> Kembali</a>
 
-    @foreach($pegawai as $p)
+                    <br/>
+                </div>
 
-    <form action="/pegawai/update" method="POST">
-        {{csrf_field()}}
-        <input type="hidden" name="id" value="{{$p->pegawai_id}}"> <br/>
-        Nama <input type="text" name="nama" required="required" value="{{$p->pegawai_nama}}"> <br/>
-        Jabatan <input type="text" name="jabatan" required="required" value="{{$p->pegawai_jabatan}}"> <br/>
-        Umur <input type="number" name="umur" required="required" value="{{$p->pegawai_umur}}"> <br/>
-        Alamat <textarea name="alamat" required="required">{{$p->pegawai_alamat}}</textarea> <br/>
-        <input type="submit" value="Simpan Data">
-    </form>
+                    <div class="card-body">
+                        @foreach($pegawai as $p)
 
-    @endforeach
+                            <form action="/pegawai/update" method="POST">
+                                <input type="hidden" name="id" value="{{$p->pegawai_id}}">
+                                {{csrf_field()}}
+
+                                <div class="form-group">
+                                    <label>Nama</label>
+                                    <input class="form-control" type="text" name="nama" value="{{$p->pegawai_nama}}">
+
+                                    <label>Jabatan</label>
+                                    <input class="form-control" type="text" name="jabatan" value="{{$p->pegawai_jabatan}}">
+                                    
+                                    <label>Umur</label>
+                                    <input class="form-control" type="number" name="umur" value="{{$p->pegawai_umur}}">
+
+                                    <label>Alamat</label>
+                                    Alamat <textarea class="form-control" name="alamat">{{$p->pegawai_alamat}}</textarea>
+
+                                    <br/>
+
+                                    <input class="btn btn-outline-primary" type="submit" value="Simpan Data">
+
+                                </div>
+                
+                            </form>
+
+                        @endforeach
+
+                    </div>
+             
+        </div>
+
+    </div>   
 
 </body>
 </html>

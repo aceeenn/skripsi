@@ -10,7 +10,7 @@
 @section('konten')
 
 
-<a href="/pegawai/tambah"> Tambah Data Disini</a>
+<a href="/mahasiswa/tambah"> Tambah Data Disini</a>
 <br/>
 <br/>
 
@@ -19,8 +19,8 @@
             <th>Nama</th>
             <th>Jurusan</th>
             <th>Hobby</th>
-           <th>Alamat</th>
-           <th>Opsi</th>
+            <th>Alamat</th>
+            <th>Opsi</th>
 
         </tr>
 

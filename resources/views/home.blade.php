@@ -1,18 +1,23 @@
-<!-- Menghubungkan dengan view template master -->
+@extends('layouts.app')
 
-@extends ('master')
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
 
-<!-- isi bagian judul halaman -->
-<!-- cara penulisan isi section yang pendek -->
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
-@section ('judul_halaman', 'Halaman Home')
-
-
-<!-- isi bagian konten-->
-<!-- cara penulisan isi section yang panjang -->
-@section ('konten')
-
-    <p>Ini adalah halaman home</p>
-    <p>Selamat Datang !</p>
-
+                    You are logged in!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
