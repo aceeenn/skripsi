@@ -13,7 +13,7 @@
 
 //route bawaan dari laravel
 Route::get('/', function () {
-    return view('home.index22');
+    return view('index');
 });
 
 // Route::get('halo', function () {
