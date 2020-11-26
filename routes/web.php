@@ -41,20 +41,29 @@ Route::get('/blog/tentang', 'BlogController@tentang');
 Route::get('/blog/kontak', 'BlogController@kontak');
 
 
-//CRUD pegawai
-Route::get('/pegawai', 'PegawaiController@index');
+Route::group(['middleware' => ['auth']], function () {
 
-Route::get('/pegawai/tambah', 'PegawaiController@tambah');
+    //CRUD pegawai
+    Route::get('/pegawai', 'PegawaiController@index');
 
-Route::post('/pegawai/store', 'PegawaiController@store');
+    Route::get('/pegawai/tambah', 'PegawaiController@tambah');
 
-Route::get('/pegawai/edit/{id}', 'PegawaiController@edit');
+    Route::post('/pegawai/store', 'PegawaiController@store');
 
-Route::post('/pegawai/update', 'PegawaiController@update');
+    Route::get('/pegawai/edit/{id}', 'PegawaiController@edit');
 
-Route::get('/pegawai/hapus/{id}', 'PegawaiController@hapus');
+    Route::post('/pegawai/update', 'PegawaiController@update');
 
-Route::get('/pegawai/cari', 'PegawaiController@cari');
+    Route::get('/pegawai/hapus/{id}', 'PegawaiController@hapus');
+
+    Route::get('/pegawai/cari', 'PegawaiController@cari');
+    
+});
+
+
+
+
+
 
 
 //CRUD mahasiswa
