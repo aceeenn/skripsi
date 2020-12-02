@@ -1,43 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Tutorial Laravel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Judul di atas</title>
+
+<link rel="stylesheet" href="{{asset('/css/app.css')}}">
+
+
 </head>
+
 <body>
 
-    <header>
-        
-        <h2>Blog By Me</h2>
-        
-        <nav>
-            <a href="/blog">HOME</a>
-            |
-            <a href="/blog/tentang">TENTANG</a>
-            |
-            <a href="/blog/kontak">KONTAK</a>
-        </nav>
-
-    </header>
-
-    <hr/>
-    <br/>
-    <br/>
-
-    <!--bagian judul halaman blog-->
-    <h3>@yield ('judul_halaman')</h3>
-
-
-    <!--bagian konten blog-->
-    @yield('konten')
-
-
-    <br/>
-    <br/>
-    <hr/>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
     
-    <footer>
-        <p>&copy; <a href="https://twitter.com/mangkus_"> Twitter Saya</a>. 1997 - 2020 </p>
-    </footer>
-    
+            {{-- <li class="nav-item active">
+                <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
+            </li> --}}
+
+            <li class="nav-item active">
+              <a class="nav-link" href="/pegawai">Pegawai <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item active">
+              <a class="nav-link" href="/mahasiswa">Mahasiswa <span class="sr-only">(current)</span></a>
+            </li>
+            
+          </ul>
+        </div>
+      </nav>
+
+@yield('content')
+
+<script src="{{asset('/js/app.js')}}"></script>
+
 </body>
+
 </html>

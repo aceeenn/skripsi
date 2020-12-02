@@ -87,6 +87,40 @@ class PegawaiController extends Controller
         return view('pegawai.index',['pegawai'=>$pegawai]);
     }
 
+    public function input(){
+        return view ('pegawai.input');
+
+    }
+
+    
+
+    public function proses(Request $request){
+
+        $message = [
+            'required' => ':attribute wajib diisi cuy!',
+            'min' => ':attribute harus diisi minimal :min karakter cuy!',
+            'max' => ':attribue harus disiin maximal :max karakter cuy!' 
+        ];
+
+        $this->validate($request,[
+            'nama' => 'required|min:5|max:20',
+            'jabatan' => 'required',
+            'umur' => 'required|numeric',
+            'alamat' => 'required'
+        ], $message);
+
+
+        // DB::table('pegawai')->insert([
+        //     'pegawai_nama' =>$request->nama,
+        //     'pegawai_jabatan' =>$request->jabatan,
+        //     'pegawai_umur' =>$request->umur,
+        //     'pegawai_alamat' =>$request->alamat
+        // ]);
+
+        return view ('pegawai.proses', ['data' => $request]);
+
+    }
+
     
     //--------batas coding beda----------
 
@@ -97,20 +131,20 @@ class PegawaiController extends Controller
 
 
 
-//--------batas coding beda----------
+// --------batas coding beda----------
 
 
 
-    public function formulir (){
+//     public function formulir (){
 
-        return view('formulir');
+//         return view('formulir');
 
-    }
+//     }
 
-    public function proses (Request $request){
-        $nama = $request->input('nama');
-        $alamat = $request->input('alamat');
-        return "Nama :" .$nama." Alamat : " .$alamat;
-    }
+//     public function proses (Request $request){
+//         $nama = $request->input('nama');
+//         $alamat = $request->input('alamat');
+//         return "Nama :" .$nama." Alamat : " .$alamat;
+//     }
 
 }
