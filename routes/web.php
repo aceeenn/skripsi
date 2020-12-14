@@ -85,3 +85,9 @@ Route::get('/mahasiswa/hapus/{id}', 'MahasiswaController@hapus');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+//CRUD pekerja
+
+Route::get('/pekerja', 'PekerjaController@index');

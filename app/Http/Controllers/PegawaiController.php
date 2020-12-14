@@ -107,6 +107,12 @@ class PegawaiController extends Controller
             'jabatan' => 'required',
             'umur' => 'required|numeric',
             'alamat' => 'required'
+        ]);
+        $this->DB::table('pegawai')->insert([
+            'pegawai_nama' =>$request->nama,
+            'pegawai_jabatan' =>$request->jabatan,
+            'pegawai_umur' =>$request->umur,
+            'pegawai_alamat' =>$request->alamat
         ], $message);
 
 
@@ -120,31 +126,5 @@ class PegawaiController extends Controller
         return view ('pegawai.proses', ['data' => $request]);
 
     }
-
-    
-    //--------batas coding beda----------
-
-
-
-
-
-
-
-
-// --------batas coding beda----------
-
-
-
-//     public function formulir (){
-
-//         return view('formulir');
-
-//     }
-
-//     public function proses (Request $request){
-//         $nama = $request->input('nama');
-//         $alamat = $request->input('alamat');
-//         return "Nama :" .$nama." Alamat : " .$alamat;
-//     }
 
 }
