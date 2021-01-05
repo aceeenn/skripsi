@@ -19,7 +19,7 @@ class PekerjaSeeder extends Seeder
 
     
         //membuat data dummy sebanyak 100 data
-        for($a = 1;$a<=100; $a++ ){
+        for($a = 1;$a<=50; $a++ ){
 
             //insert data dummy ke dalam database (table) dengan data faker
             DB::table ('pekerja')->insert([

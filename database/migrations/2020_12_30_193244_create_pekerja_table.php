@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePekerjasTable extends Migration
+class CreatePekerjaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,11 @@ class CreatePekerjasTable extends Migration
     public function up()
     {
         Schema::create('pekerja', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('nama');
             $table->text('alamat');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

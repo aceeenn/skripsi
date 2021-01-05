@@ -82,6 +82,7 @@ Route::get('/mahasiswa/edit/{id}', 'MahasiswaController@edit');
 Route::post('/mahasiswa/update', 'MahasiswaController@update');
 
 Route::get('/mahasiswa/hapus/{id}', 'MahasiswaController@hapus');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -91,3 +92,23 @@ Route::get('/home', 'HomeController@index')->name('home');
 //CRUD pekerja
 
 Route::get('/pekerja', 'PekerjaController@index');
+
+Route::get('/pekerja/tambah', 'PekerjaController@tambah');
+
+Route::post('/pekerja/store', 'PekerjaController@store');
+
+Route::get('/pekerja/edit/{id}', 'PekerjaController@edit');
+
+Route::put('/pekerja/update/{id}', 'PekerjaController@update');
+
+Route::get('/pekerja/hapus/{id}', 'PekerjaController@delete');
+
+Route::get('/pekerja/trash', 'PekerjaController@trash');
+
+Route::get('/pekerja/kembalikan/{id}', 'PekerjaController@kembalikan');
+
+Route::get('/pekerja/kembalikan_semua', 'PekerjaController@kembalikan_semua');
+
+Route::get('/pekerja/hapus_permanen/{id}', 'PekerjaController@hapus_permanen');
+
+Route::get('/pekerja/hapus_permanen_semua', 'PekerjaController@hapus_permanen_semua');
