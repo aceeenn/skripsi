@@ -10,10 +10,15 @@ class Pekerja extends Model
 
     use SoftDeletes;
 
-    protected $table ='pekerja';
+    protected $table ="pekerja";
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['nama', 'alamat'] ;
+    protected $fillable = ['nama', 'alamat'];
+
+    public function telepon(){
+
+        return $this->hasOne('App\Telepon');
+    }
     
 }

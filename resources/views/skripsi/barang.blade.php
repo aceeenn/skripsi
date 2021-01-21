@@ -1,37 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {{-- <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"> --}}
-    <title>Tutorial Eloquent Laravel</title>
+@extends('skripsi\master')
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">
+@section('content')
 
-</head>
 
-<body>
     <div class="container">
         <div class="card mt-5">
             <div class="card-header text-center">
-                CRUD Data Pekerja - <a href="https://twitter.com/mangkus_" target="_blank">twitter saya</a>
+                <h4 class="text-bold">Data Barang</h4>
 
             </div>
             <div class="card-body">
-                <a href="/pekerja/tambah" class="btn btn-outline-primary">Input Pekerja Baru</a>
-                <a href="/pekerja/trash" class="btn btn-outline-primary">Trash</a>
+                <a href="/skripsi/tambah_barang" class="btn btn-outline-primary">Tambah Barang</a>
+                
                 <br>
                 <br>
                 <table class="table table-bordered table-hover table-striped">
                     <thead align="center">
                         <tr>
-                            <th>Nama</th>
-                            <th>Alamat</th>
-                            <th>Nomor Telepon</th>
+                            <th>Id Barang</th>
+                            <th>Jenis Barang</th>
+                            <th>Berat barang</th>
+                            <th>Panjang barang</th>
+                            <th>Lebar barang</th>
+                            <th>Tinggi barang</th>
+                            <th>Jumlah barang</th>
+                            <th>Tanggal Pengiriman</th>
+                            <th>Berat barang</th>
                             <th colspan="2">Opsi</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    {{-- <tbody>
                         @foreach($pekerja as $p)
                             <tr>
                                 <td>{{$p->nama}}</td>
@@ -45,7 +43,7 @@
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
+                    </tbody> --}}
 
                 </table>
 
@@ -58,10 +56,8 @@
     <nav aria-label="Page navigation example">
         <ul class=" pagination justify-content-center">
             
-            {{$pekerja->links()}}
+            {{-- {{$pekerja->links()}} --}}
 
         </ul>
     </nav> 
-    
-</body>
-</html>
+@endsection

@@ -10,13 +10,15 @@ use App\Pekerja;
 class PekerjaController extends Controller
 {
 
+    // protected $table = "pengguna";
+
     public function index(){
 
         //mengambil data pekerja
         $pekerja = Pekerja::paginate(10);
 
         //mengirim data pekerja ke view pekerja
-        return view ('pekerja.pekerja', ['pekerja' =>$pekerja]);
+        return view('pekerja.pekerja', ['pekerja' =>$pekerja]);
     }
 
     public function tambah(){
@@ -108,5 +110,7 @@ class PekerjaController extends Controller
 
         return redirect ('/pekerja/trash');
     }
+
+    
     
 }

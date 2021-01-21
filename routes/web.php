@@ -66,10 +66,6 @@ Route::get('/blog/kontak', 'BlogController@kontak');
 
 
 
-
-
-
-
 //CRUD mahasiswa
 Route::get('/mahasiswa', 'MahasiswaController@index');
 
@@ -85,11 +81,11 @@ Route::get('/mahasiswa/hapus/{id}', 'MahasiswaController@hapus');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->barangme('home');
 
 
 
-//CRUD pekerja
+//CRUD barangi
 
 Route::get('/pekerja', 'PekerjaController@index');
 
@@ -112,3 +108,17 @@ Route::get('/pekerja/kembalikan_semua', 'PekerjaController@kembalikan_semua');
 Route::get('/pekerja/hapus_permanen/{id}', 'PekerjaController@hapus_permanen');
 
 Route::get('/pekerja/hapus_permanen_semua', 'PekerjaController@hapus_permanen_semua');
+
+
+
+//CRUD skripsi
+
+Route::get('/skripsi', 'SkripsiController@index');
+
+Route::get('/skripsi/cari', 'SkripsiController@cari');
+
+Route::get('/skripsi/barang', 'SkripsiController@barang');
+
+Route::get('/skripsi/penerima', 'SkripsiController@penerima');
+
+Route::get('/skripsi/pengirim', 'SkripsiController@pengirim');
