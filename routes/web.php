@@ -85,7 +85,7 @@ Auth::routes();
 
 
 
-//CRUD barangi
+//CRUD barang
 
 Route::get('/pekerja', 'PekerjaController@index');
 
@@ -122,3 +122,7 @@ Route::get('/skripsi/barang', 'SkripsiController@barang');
 Route::get('/skripsi/penerima', 'SkripsiController@penerima');
 
 Route::get('/skripsi/pengirim', 'SkripsiController@pengirim');
+
+Route::get('/skripsi/tambah_penerima', 'SkripsiController@tambah_penerima');
+
+Route::post('/skripsi/store_penerima', 'SkripsiController@store_penerima');

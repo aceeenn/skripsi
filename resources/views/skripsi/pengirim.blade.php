@@ -23,21 +23,21 @@
                             <th colspan="2">Opsi</th>
                         </tr>
                     </thead>
-                    {{-- <tbody>
-                        @foreach($pekerja as $p)
+                    <tbody>
+                        @foreach($skripsi as $p)
                             <tr>
-                                <td>{{$p->nama}}</td>
+                                <td>{{$p->nama_pengirim}}</td>
+                                <td>{{$p->no_telpon}}</td>
                                 <td>{{$p->alamat}}</td>
-                                <td>{{$p->nomor_telepon}}</td>
                                 <td>
-                                    <a href="/pekerja/edit/{{$p->id}}" class="btn btn-warning">Edit</a>
+                                    <a href="/pengirim/edit/{{$p->id}}" class="btn btn-warning">Edit</a>
                                 </td>
                                 <td>
-                                    <a href="/pekerja/hapus/{{$p->id}}" class="btn btn-danger">Hapus</a>
+                                    <a href="/pengirim/hapus/{{$p->id}}" class="btn btn-danger">Hapus</a>
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody> --}}
+                    </tbody>
 
                 </table>
 
@@ -50,7 +50,7 @@
     <nav aria-label="Page navigation example">
         <ul class=" pagination justify-content-center">
             
-            {{-- {{$pekerja->links()}} --}}
+            {{$skripsi->links()}}
 
         </ul>
     </nav> 
