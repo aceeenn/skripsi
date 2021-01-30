@@ -20,7 +20,7 @@
                             <th>Nama Pengirim</th>
                             <th>No Telepon</th>
                             <th>Alamat</th>
-                            <th colspan="2">Opsi</th>
+                            <th style="width : 200px" >Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,8 +31,7 @@
                                 <td>{{$p->alamat}}</td>
                                 <td>
                                     <a href="/pengirim/edit/{{$p->id}}" class="btn btn-warning">Edit</a>
-                                </td>
-                                <td>
+                                    |
                                     <a href="/pengirim/hapus/{{$p->id}}" class="btn btn-danger">Hapus</a>
                                 </td>
                             </tr>

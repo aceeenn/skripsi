@@ -119,6 +119,10 @@ Route::get('/skripsi/cari', 'SkripsiController@cari');
 
 Route::get('/skripsi/barang', 'SkripsiController@barang');
 
+Route::get('/skripsi/tambah_barang', 'SkripsiController@tambah_barang');
+
+Route::post('/skripsi/store_barang', 'SkripsiController@store_barang');
+
 Route::get('/skripsi/penerima', 'SkripsiController@penerima');
 
 Route::get('/skripsi/pengirim', 'SkripsiController@pengirim');
@@ -126,3 +130,7 @@ Route::get('/skripsi/pengirim', 'SkripsiController@pengirim');
 Route::get('/skripsi/tambah_penerima', 'SkripsiController@tambah_penerima');
 
 Route::post('/skripsi/store_penerima', 'SkripsiController@store_penerima');
+
+Route::get('/skripsi/tambah_pengirim', 'SkripsiController@tambah_pengirim');
+
+Route::post('/skripsi/store_pengirim', 'SkripsiController@store_pengirim');

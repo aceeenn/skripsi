@@ -11,41 +11,48 @@
             </div>
             <div class="card-body">
                 <a href="/skripsi/tambah_barang" class="btn btn-outline-primary">Tambah Barang</a>
-                
                 <br>
                 <br>
-                <table class="table table-bordered table-hover table-striped">
-                    <thead align="center">
-                        <tr>
-                            <th>Id Barang</th>
-                            <th>Jenis Barang</th>
-                            <th>Berat barang</th>
-                            <th>Panjang barang</th>
-                            <th>Lebar barang</th>
-                            <th>Tinggi barang</th>
-                            <th>Jumlah barang</th>
-                            <th>Tanggal Pengiriman</th>
-                            <th>Berat barang</th>
-                            <th colspan="2">Opsi</th>
-                        </tr>
-                    </thead>
-                    {{-- <tbody>
-                        @foreach($pekerja as $p)
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        {{-- table-bordered table-striped --}}
+                        <thead align="center">
                             <tr>
-                                <td>{{$p->nama}}</td>
-                                <td>{{$p->alamat}}</td>
-                                <td>{{$p->nomor_telepon}}</td>
-                                <td>
-                                    <a href="/pekerja/edit/{{$p->id}}" class="btn btn-warning">Edit</a>
-                                </td>
-                                <td>
-                                    <a href="/pekerja/hapus/{{$p->id}}" class="btn btn-danger">Hapus</a>
-                                </td>
+                                <th>Tanggal Pengiriman</th>
+                                <th>Jenis Barang</th>
+                                <th>Berat Barang</th>
+                                <th>Panjang Barang</th>
+                                <th>Lebar Barang</th>
+                                <th>Tinggi Barang</th>
+                                <th>Jumlah Barang</th>
+                                <th>Berat Barang</th>
+                                <th style="width: 165px">Opsi</th>
                             </tr>
-                        @endforeach
-                    </tbody> --}}
+                        </thead>
+                        <tbody>
+                            @foreach($skripsi as $p)
+                                <tr>
+                                    <td>{{$p->tanggal_pengiriman}}</td>
+                                    <td>{{$p->jenis_barang}}</td>
+                                    <td>{{$p->berat_barang}}</td>
+                                    <td>{{$p->panjang_barang}}</td>
+                                    <td>{{$p->lebar_barang}}</td>
+                                    <td>{{$p->tinggi_barang}}</td>
+                                    <td>{{$p->jumlah_barang}}</td>
+                                    <td>{{$p->berat_barang}}</td>
+                                    <td>
+                                        <a href="/pekerja/edit/{{$p->id}}" class="btn btn-warning">Edit</a>
+                                    |
+                                        <a href="/pekerja/hapus/{{$p->id}}" class="btn btn-danger">Hapus</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+    
+                    </table>
 
-                </table>
+                </div>
+                
 
             </div>
 
