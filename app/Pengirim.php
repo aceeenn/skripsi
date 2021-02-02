@@ -16,8 +16,11 @@ class Pengirim extends Model
 
     public $timestamps = false;
 
-    
-
     // karena primary keynya bukan increment(integer) kita harus set auto incrementnya tidak berjalan karena defaultnya primary key itu pakai integer bukan varchar
     public $incrementing = false;
+
+    public function barang (){
+
+        return $this->belongsTo('App\Barang');
+    }
 }

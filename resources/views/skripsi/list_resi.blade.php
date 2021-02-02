@@ -6,24 +6,24 @@
     <div class="container">
         <div class="card mt-5">
             <div class="card-header text-center">
-                <h4 class="text-bold">Data Penerima</h4>
+                <h4 class="text-bold">Data Resi</h4>
 
             </div>
             <div class="card-body">
-                <a href="/skripsi/tambah_penerima" class="btn btn-outline-primary">Tambah Penerima</a>
+                {{-- <a href="/skripsi/tambah_penerima" class="btn btn-outline-primary">Tambah Penerima</a> --}}
                 
                 <br>
                 <br>
                 <table class="table table-bordered table-hover table-striped">
                     <thead align="center">
                         <tr>
+                            <th>No Resi</th>
+                            <th>Tanggal</th>
+                            <th>Nama Pengirim</th>
                             <th>Nama Penerima</th>
-                            <th>No Telepon</th>
-                            <th>Alamat</th>
-                            <th style="width: 170px">Opsi</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    {{-- <tbody>
                         @foreach($skripsi as $p)
                             <tr>
                                 <td>{{$p->nama_penerima}}</td>
@@ -36,7 +36,7 @@
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
+                    </tbody> --}}
 
                 </table>
 
@@ -49,7 +49,7 @@
     <nav aria-label="Page navigation example">
         <ul class=" pagination justify-content-center">
             
-            {{$skripsi->links()}}
+            {{-- {{$skripsi->links()}} --}}
 
         </ul>
     </nav> 

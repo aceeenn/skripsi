@@ -20,7 +20,7 @@
                             <th>Nama Pengirim</th>
                             <th>No Telepon</th>
                             <th>Alamat</th>
-                            <th style="width : 200px" >Opsi</th>
+                            <th style="width: 170px" >Opsi</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -20,4 +20,9 @@ class Penerima extends Model
 
     // timestamp 
     public $timestamps = false;
+
+    public function penerima (){
+
+        return $this->belongsTo('App\Barang');
+    }
 }

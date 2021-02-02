@@ -134,3 +134,13 @@ Route::post('/skripsi/store_penerima', 'SkripsiController@store_penerima');
 Route::get('/skripsi/tambah_pengirim', 'SkripsiController@tambah_pengirim');
 
 Route::post('/skripsi/store_pengirim', 'SkripsiController@store_pengirim');
+
+Route::get('/skripsi/list_resi', 'SkripsiController@list_resi');
+
+Route::get('/skripsi/tambah_resi', 'SkripsiController@tambah_resi');
+
+Route::post('/skripsi/store_resi', 'SkripsiController@store_resi');
+
+Route::get('dynamic-field', 'DynamicFieldController@index');
+
+Route::post('dynamic-field/insert', 'DynamicFieldController@insert')->name('dynamic-field.insert');

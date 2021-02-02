@@ -18,6 +18,7 @@
               <input text-center class="form-control" type="text" name="cari" placeholder="Cari Resi Disini ..."
                   value="{{ old('cari') }}">
               <input class="btn btn-primary ml-3 align-content-center" type="submit" value="CARI">
+              <a href="/skripsi/tambah_resi" class="btn btn-outline-primary">Tambah Resi Baru</a>
 
             </div>
   

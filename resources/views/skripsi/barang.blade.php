@@ -19,6 +19,8 @@
                         <thead align="center">
                             <tr>
                                 <th>Tanggal Pengiriman</th>
+                                <th>Nama Pengirim</th>
+                                {{-- <th>Nama Penerima</th> --}}
                                 <th>Jenis Barang</th>
                                 <th>Berat Barang</th>
                                 <th>Panjang Barang</th>
@@ -33,6 +35,13 @@
                             @foreach($skripsi as $p)
                                 <tr>
                                     <td>{{$p->tanggal_pengiriman}}</td>
+
+                                    <td>
+                                        @foreach ($p->pengirim as $pg)
+                                            {{$pg->nama_pengirim}},
+                                        @endforeach
+                                    </td>
+                                    
                                     <td>{{$p->jenis_barang}}</td>
                                     <td>{{$p->berat_barang}}</td>
                                     <td>{{$p->panjang_barang}}</td>

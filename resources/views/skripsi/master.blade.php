@@ -20,7 +20,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/skripsi">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/skripsi">Home<span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/skripsi/list_resi">List Resi<span class="sr-only"></span></a>
             </li>
             
             <li class="nav-item dropdown">
@@ -28,9 +31,9 @@
                 Master
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/skripsi/barang">Barang</a>
+                {{-- <a class="dropdown-item" href="/skripsi/barang">Barang</a> --}}
                 
-                <div class="dropdown-divider"></div>
+                {{-- <div class="dropdown-divider"></div> --}}
                 <a class="dropdown-item" href="/skripsi/pengirim">Pengirim</a>
                 <a class="dropdown-item" href="/skripsi/penerima">Penerima</a>
               </div>

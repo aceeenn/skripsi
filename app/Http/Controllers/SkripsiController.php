@@ -20,6 +20,20 @@ class SkripsiController extends Controller
         return view ('skripsi.index');
     }
 
+    public function list_resi(){
+
+        return view ('skripsi.list_resi');
+    }
+
+    public function tambah_resi(){
+
+        $pengirim = Pengirim::get()->all();
+        $penerima = Penerima::get()->all();
+
+        return view ('skripsi.tambah_resi', ['pengirim'=>$pengirim, 'penerima' => $penerima]);
+
+    }
+
     public function barang(){
 
         $skripsi = Barang::paginate(10);
@@ -88,6 +102,7 @@ class SkripsiController extends Controller
         $kode_last = Penerima::get()->count();
         if($kode_last <= 0){
             $kode = $kode_last+1;
+            // $kode = 0;
         } else {
             $kodePenerima = Penerima::orderBy('id_penerima', 'DESC')->first();
             $kode1 = \substr($kodePenerima['id_penerima'], -3);
@@ -100,6 +115,9 @@ class SkripsiController extends Controller
         $nama_penerima_input = $request->nama_penerima;
         $kode_nama = \substr($nama_penerima_input, 0, 3);
         $final_id = Str::upper($kode_nama).$id_penerima;
+
+        // dd($final_id);
+        // die;
 
         Penerima::create([
             'id_penerima' => $final_id,
