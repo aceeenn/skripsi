@@ -107,9 +107,10 @@ class SkripsiController extends Controller
             $kodePenerima = Penerima::orderBy('id_penerima', 'DESC')->first();
             $kode1 = \substr($kodePenerima['id_penerima'], -3);
             $kode = intval($kode1);
+            $kode++;
         }
         
-        $id_penerima = \str_pad($kode++, 3, "0", STR_PAD_LEFT);
+        $id_penerima = \str_pad($kode, 3, "0", STR_PAD_LEFT);
 
         // FUNCTION CREATE ID 
         $nama_penerima_input = $request->nama_penerima;
@@ -157,14 +158,17 @@ class SkripsiController extends Controller
             $kodePengirim = Pengirim::orderBy('id_pengirim', 'DESC')->first();
             $kode1 = \substr($kodePengirim['id_pengirim'], -3);
             $kode = intval($kode1);
+            $kode++;
         }
         
-        $id_pengirim = \str_pad($kode++, 3, "0", STR_PAD_LEFT);
+        $id_pengirim = \str_pad($kode, 3, "0", STR_PAD_LEFT);
 
         // FUNCTION CREATE ID 
         $nama_pengirim_input = $request->nama_pengirim;
         $kode_nama = \substr($nama_pengirim_input, 0, 3);
         $final_id = Str::upper($kode_nama).$id_pengirim;
+
+       
 
         Pengirim::create([
             'id_pengirim' => $final_id,
