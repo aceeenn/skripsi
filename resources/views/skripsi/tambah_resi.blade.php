@@ -44,15 +44,28 @@
                                         </select>
                                 </div>
                             </div>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <label>Tanggal Pengiriman</label>
+                                    <input type="date" name="tanggal_pengiriman" class="form-control" placeholder="Tanggal Pengiriman...">
+                                        @if ($errors->has('tanggal_pengiriman'))
+                                            <div class="text-danger">
+                                                {{$errors->first('tanggal_pengiriman')}}
+             
+                                            </div>
+                                        @endif
+                                </div>
+                                <div class="col">
+                                    <label>No Surat Jalan</label>
+                                    <input type="text" name="no_sj" class="form-control" placeholder="No Surat Jalan">
+                                </div>
+                            </div>
+                            <br>
+                            
                             <div class="form-group">
-                                <label>Tanggal Pengiriman</label>
-                                <input type="date" name="tanggal_pengiriman" class="form-control" placeholder="Tanggal Pengiriman...">
-                                    @if ($errors->has('tanggal_pengiriman'))
-                                        <div class="text-danger">
-                                            {{$errors->first('tanggal_pengiriman')}}
-         
-                                        </div>
-                                    @endif
+                                <label>No Container</label>
+                                <input type="text" name="no_container" class="form-control" placeholder="No Container">
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -61,17 +74,18 @@
                                 </div>
                                 <div class="col">
                                     <label>Tanggal Kapal</label>
-                                    <input type="date" name="tanggal_kapal" class="form-control" placeholder="Tanggal Kapal...">                       
+                                    <input type="date" name="tgl_kapal" class="form-control" placeholder="Tanggal Kapal...">                       
                                 </div>
                             </div>
+                            <br>
                             <div class="row">
                                 <div class="col">
                                     <label>Tanggal Sandar</label>
-                                    <input type="date" name="tanggal_sandar" class="form-control" placeholder="Tanggal Sandar...">
+                                    <input type="date" name="tgl_sandar" class="form-control" placeholder="Tanggal Sandar...">
                                 </div>
                                 <div class="col">
                                     <label>Tanggal Antar Barang</label>
-                                    <input type="date" name="tanggal_antar" class="form-control" placeholder="Tanggal Antar...">                                     
+                                    <input type="date" name="tgl_antar" class="form-control" placeholder="Tanggal Antar...">                                     
                                 </div>
                             </div>
                         </form>
@@ -86,12 +100,13 @@
                                 <thead>
                                     <tr>
                                         <th>Nama Barang</th>
+                                        <th>Jumlah Barang</th>
+                                        <th>Satuan Barang</th>
                                         <th>Berat Barang</th>
                                         <th>Panjang Barang</th>
                                         <th>Lebar Barang</th>
                                         <th>Tinggi Barang</th>
-                                        <th>Jumlah Barang</th>
-                                        <th colspan="2">Opsi</th>
+                                        <th style="width: 140px">Opsi</th>
                                     </tr>
                                     <button type="button" data-toggle="modal" data-target="#modalSaya" 
                                     class="btn btn-primary">Add</button>
@@ -108,6 +123,12 @@
                                             <input type="text" name="nama_barang" class="form-control" placeholder="Nama Barang">
                                         </th>
                                         <th>
+                                            <input type="text" name="jumlah_barang" class="form-control" placeholder="Jumlah Barang">
+                                        </th>
+                                        <th>
+                                            <input type="text" name="satuan_barang" class="form-control" placeholder="Satuan Barang">
+                                        </th>
+                                        <th>
                                             <input type="text" name="berat_barang" class="form-control" placeholder="Berat Barang">
                                         </th>
                                         <th>
@@ -118,9 +139,6 @@
                                         </th>
                                         <th>
                                             <input type="text" name="tinggi_barang" class="form-control" placeholder="Tinggi Barang">
-                                        </th>
-                                        <th>
-                                            <input type="text" name="jumlah_barang" class="form-control" placeholder="Jumlah Barang">
                                         </th>
                                         <th>
                                             <a href="/penerima/edit/" class="btn btn-sm btn-warning">Edit</a>
@@ -157,7 +175,12 @@
                                                         <div class="form-row">
                                                             <div class="col">
                                                                 <label>Satuan</label>
-                                                               <input type="text" name="satuan_barang" class="form-control" placeholder="Satuan Barang">
+                                                                <select class="form-control">
+                                                                    <option>PCS</option>
+                                                                    <option>DUS</option>
+                                                                    <option>DRM</option>
+                                                                    <option>ZAK</option>
+                                                                </select>
                                                             </div>
                                                             <div class="col">
                                                                 <label>Berat Barang</label>
@@ -184,7 +207,7 @@
                                          
                                                             {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
                                                     </div>
-                                                    
+
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-primary">Save</button>
