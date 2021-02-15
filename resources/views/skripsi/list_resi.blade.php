@@ -18,11 +18,29 @@
                     <thead align="center">
                         <tr>
                             <th>No Resi</th>
+                            <th>Nama Barang</th>
+                            <th>Nama Barang</th>
                             <th>Tanggal</th>
                             <th>Nama Pengirim</th>
                             <th>Nama Penerima</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        @foreach ($skripsi as $p)
+                        <tr align="center">
+                            <th>STS2101001</th>
+                            <th>{{$p->nama_barang}}</th>
+                            <th>
+                                @foreach ($p->transaksi as $a)
+                                {{$a->transaksi}},
+                                @endforeach
+                            </th>
+                            <th>01-jan-2021</th>
+                            <th>Ardiansyah</th>
+                            <th>Saldi</th>
+                        </tr>
+                        @endforeach
+                    </tbody>
                     {{-- <tbody>
                         @foreach($skripsi as $p)
                             <tr>

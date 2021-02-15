@@ -28,7 +28,7 @@
 
                         <div class="form-group">
                             <label>Nama</label>
-                            <input type="text" name="nama_penerima" class="form-control" placeholder="Nama Penerima...">
+                            <input type="text" name="nama_penerima" class="form-control" placeholder="Nama Penerima">
 
                             @if ($errors->has('nama_penerima'))
                                 <div class="text-danger">
@@ -41,7 +41,7 @@
 
                         <div class="form-group">
                             <label>Nomor Telepon</label>
-                            <input type="text" name="no_telpon" class="form-control" placeholder="Nomor Telepon...">
+                            <input type="text" name="no_telpon" class="form-control" placeholder="Nomor Telepon">
 
                             @if ($errors->has('no_telpon'))
                                 <div class="text-danger">
@@ -54,7 +54,7 @@
 
                         <div class="form-group">
                             <label>Alamat</label>
-                            <textarea name="alamat" class="form-control" placeholder="Alamat Penerima..."></textarea>
+                            <textarea name="alamat" class="form-control" placeholder="Alamat Penerima"></textarea>
 
                             @if ($errors->has('alamat'))
                                 <div class="text-danger">

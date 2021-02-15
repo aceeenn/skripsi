@@ -21,10 +21,33 @@
               <a href="/skripsi/tambah_resi" class="btn btn-outline-primary">Tambah Resi Baru</a>
 
             </div>
-  
-              
           </div>
         </form>
+
+        {{-- <table border="1">
+          <tr>
+              <th>Resi Barang</th>
+              <th>Nama Barang</th>
+              <th>Nama Pengirim</th>
+              <th>Nama Penerima</th>
+              <th>Tanggal Kirim</th>
+              <th>Tanggal Kapal Berangkat</th>
+              <th>Tanggal Sandar</th>
+              <th>Tanggal Antar</th>
+          </tr>
+          @foreach($skripsi as $p)
+          <tr>
+              <td>{{ $p->id_barang}}</td>
+              <td>{{ $p->nama_barang}}</td>
+              <td>{{ $p->nama_pengirim}}</td>
+              <td>{{ $p->nama_penerima}}</td>
+              <td>{{ $p->tgl_kirim}}</td>
+              <td>{{ $p->tgl_kapal}}</td>
+              <td>{{ $p->tgl_sandar}}</td>
+              <td>{{ $p->tgl_antar}}</td>
+          </tr>
+          @endforeach
+      </table> --}}
 
         <br>
         <img class="img-fluid" src="{{asset('/image/background.jpg')}}">

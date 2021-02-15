@@ -20,9 +20,25 @@ class SkripsiController extends Controller
         return view ('skripsi.index');
     }
 
+    // public function customer(){
+
+    //     return view ('skripsi.index_customer');
+    // }
+
+    // public function cari(Request $request){
+
+    //     $cari = $request->cari;
+
+    //     $skripsi = DB::table('barang')->where('id_barang', 'like', "%".$cari."%")->paginate();
+
+    //     return view ('skripsi.index_customer', ['skripsi'=>$skripsi]);
+    // }
+
     public function list_resi(){
 
-        return view ('skripsi.list_resi');
+        $skripsi = Barang::All();
+
+        return view ('skripsi.list_resi', ['skripsi'=>$skripsi]);
     }
 
     public function tambah_resi(){
@@ -31,7 +47,46 @@ class SkripsiController extends Controller
         $penerima = Penerima::get()->all();
 
         return view ('skripsi.tambah_resi', ['pengirim'=>$pengirim, 'penerima' => $penerima]);
+    }
+    function insert (Request $request){
 
+        if ($request->ajax()){
+            $rules= array(
+                'first_name.*'  => 'required',
+                'last_name.*'  => 'required'
+                
+            );
+
+            $error = Validator::make($request->all(), $rules);
+
+            if($error->fails()){
+                return response()->json([
+                    'error' => $error->errors()->all()
+
+                ]);
+            }
+
+            $first_name = $request->first_name;
+            $last_name = $request->last_name;
+          
+
+            for ($count = 0; $count < count ($first_name); $count++){
+                $data = array (
+                    'first_name' => $first_name[$count],
+                    'last_name' => $last_name[$count]
+                    
+                );
+
+                $insert_data[] = $data;
+            }
+
+            DynamicField::insert ($insert_data);
+
+            return response()->json([
+                'success' => 'Data Added Successfully.'
+            ]);
+
+        }
     }
 
     public function barang(){
@@ -178,6 +233,112 @@ class SkripsiController extends Controller
         ]);
 
         return redirect ('/skripsi/pengirim');
+    }
+
+    public function edit_pengirim($id_pengirim = null){
+
+        $pengirim = Pengirim::find($id_pengirim);
+        // dd($skripsi);
+        // die;
+        
+        return view ('skripsi.edit_pengirim', ['pengirim' => $pengirim]);
+
+    }
+
+    public function update_pengirim(Request $request, $id_pengirim = null){
+        $this->validate($request,[
+            'nama_pengirim' => 'required',
+            'no_telpon' => 'required',
+            'alamat' => 'required'
+        ]);
+
+        // $pengirim = Pengirim::find($id_pengirim);
+        // $pengirim->nama_pengirim = $request->nama_pengirim;
+        // $pengirim->no_telpon = $request->no_telpon;
+        // $pengirim->alamat = $request->alamat;
+        // $pengirim->save();
+        // return redirect ('/pengirim');
+        // return redirect();
+        // update 
+        $data = $request->all();
+        $updatePengirim = Pengirim::find($id_pengirim);
+        $updatePengirim->nama_pengirim = $data['nama_pengirim'];
+        $updatePengirim->no_telpon = $data['no_telpon'];
+        $updatePengirim->alamat = $data['alamat'];
+        $updatePengirim->save();
+        return redirect('/skripsi/pengirim');
+
+    }
+
+    
+    function updatepengirim(Request $update, $id_pengirim = null){
+        
+        $data = $update->all();
+        $pengirim = Pengirim::find($id_pengirim);
+        $pengirim->nama_pengirim = $data['nama_pengirim'];
+        $pengirim->no_telpon = $data['no_telpon'];
+        $pengirim->alamat = $data['alamat'];
+        $pengirim->save();
+
+        // return "Succes Update";
+      return redirect('/skripsi/pengirim');
+    }
+
+    public function hapus_pengirim($id_pengirim){
+
+        $pengirim = Pengirim::find($id_pengirim);
+        $pengirim->delete();
+
+        return redirect ('/skripsi/pengirim');
+    }
+
+    public function edit_penerima($id_penerima = null){
+
+        $penerima = Penerima::find($id_penerima);
+        
+        return view ('skripsi.edit_penerima', ['penerima' => $penerima]);
+
+    }
+
+    public function update_penerima(Request $request, $id_penerima = null){
+        $this->validate($request,[
+            'nama_penerima' => 'required',
+            'no_telpon' => 'required',
+            'alamat' => 'required'
+        ]);
+
+        // update 
+        $data = $request->all();
+        $updatePenerima = Penerima::find($id_penerima);
+        $updatePenerima->nama_penerima = $data['nama_penerima'];
+        $updatePenerima->no_telpon = $data['no_telpon'];
+        $updatePenerima->alamat = $data['alamat'];
+        $updatePenerima->save();
+
+        return redirect('/skripsi/penerima');
+
+    }
+
+    
+    function updatepenerima(Request $update, $id_penerima = null){
+        
+        $data = $update->all();
+        $penerima = Penerima::find($id_penerima);
+        $penerima->nama_penerima = $data['nama_penerima'];
+        $penerima->no_telpon = $data['no_telpon'];
+        $penerima->alamat = $data['alamat'];
+        $penerima->save();
+
+        // return "Succes Update";
+      return redirect('/skripsi/penerima');
+    }
+
+    public function hapus_penerima($id_penerima){
+
+        $penerima = Penerima::find($id_penerima);
+        $penerima->delete();
+
+        return redirect ('/skripsi/penerima');
     }
 
 

@@ -29,10 +29,10 @@
                                 <td>{{$p->nama_pengirim}}</td>
                                 <td>{{$p->no_telpon}}</td>
                                 <td>{{$p->alamat}}</td>
-                                <td>
-                                    <a href="/pengirim/edit/{{$p->id}}" class="btn btn-warning">Edit</a>
+                                <td class="text-center">
+                                    <a href="/skripsi/pengirim/edit-pengirim/{{$p->id_pengirim}}" class="btn btn-warning">Edit</a>
                                     |
-                                    <a href="/pengirim/hapus/{{$p->id}}" class="btn btn-danger">Hapus</a>
+                                    <a href="/skripsi/pengirim/hapus-pengirim/{{$p->id_pengirim}}" class="btn btn-danger">Hapus</a>
                                 </td>
                             </tr>
                         @endforeach

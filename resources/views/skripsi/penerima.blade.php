@@ -30,9 +30,9 @@
                                 <td>{{$p->no_telpon}}</td>
                                 <td>{{$p->alamat}}</td>
                                 <td class="text-center">
-                                    <a href="/penerima/edit/{{$p->id}}" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="/skripsi/penerima/edit-penerima/{{$p->id_penerima}}" class="btn btn-sm btn-warning">Edit</a>
                                     |
-                                    <a href="/penerima/hapus/{{$p->id}}" class="btn btn-sm btn-danger">Hapus</a>
+                                    <a href="/skripsi/penerima/hapus-penerima/{{$p->id_penerima}}" class="btn btn-sm btn-danger">Hapus</a>
                                 </td>
                             </tr>
                         @endforeach

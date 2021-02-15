@@ -17,16 +17,12 @@ class DynamicFieldController extends Controller
 
         if ($request->ajax()){
             $rules= array(
-                'nama_barang.*' => 'required',
-                'berat_barang.*' => 'required',
-                'panjang_barang.*' => 'required',
-                'lebar_barang.*' => 'required',
-                'tinggi_barang.*' => 'required',
-                'jumlah_barang.*' => 'required',
+                'first_name.*'  => 'required',
+                'last_name.*'  => 'required'
                 
             );
 
-            $error = Validator::make ($request->all(), $rules);
+            $error = Validator::make($request->all(), $rules);
 
             if($error->fails()){
                 return response()->json([
@@ -35,21 +31,15 @@ class DynamicFieldController extends Controller
                 ]);
             }
 
-            $nama_barang = $request->nama_barang;
-            $berat_barang = $request->berat_barang;
-            $panjang_barang = $request->panjang_barang;
-            $lebar_barang = $request->lebar_barang;
-            $tinggi_barang = $request->tinggi_barang;
-            $jumlah_barang = $request->jumlah_barang;
+            $first_name = $request->first_name;
+            $last_name = $request->last_name;
+          
 
-            for ($count = 0; $count < count ($nama_barang); $count++){
+            for ($count = 0; $count < count ($first_name); $count++){
                 $data = array (
-                    'nama_barang.*' => $nama_barang[$count],
-                    'berat_barang.*' => $berat_barang[$count],
-                    'panjang_barang.*' => $panjang_barang[$count],
-                    'lebar_barang.*' => $lebar_barang[$count],
-                    'tinggi_barang.*' => $tinggi_barang[$count],
-                    'jumlah_barang.*' => $jumlah_barang[$count],
+                    'first_name' => $first_name[$count],
+                    'last_name' => $last_name[$count]
+                    
                 );
 
                 $insert_data[] = $data;

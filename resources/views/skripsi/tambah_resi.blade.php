@@ -57,47 +57,81 @@
                                         @endif
                                 </div>
                                 <div class="col">
+                                    <label>No Container</label>
+                                    <input type="text" name="no_container" class="form-control" placeholder="No Container">
+                                </div>
+                                <div class="col">
                                     <label>No Surat Jalan</label>
                                     <input type="text" name="no_sj" class="form-control" placeholder="No Surat Jalan">
                                 </div>
                             </div>
                             <br>
                             
-                            <div class="form-group">
-                                <label>No Container</label>
-                                <input type="text" name="no_container" class="form-control" placeholder="No Container">
-                            </div>
+                            
+
                             <div class="row">
                                 <div class="col">
                                     <label>Nama Kapal</label>
-                                    <input type="text" name="nama_kapal" class="form-control" placeholder="Nama Kapal...">
+                                    <input type="text" name="nama_kapal" class="form-control" placeholder="Nama Kapal">
                                 </div>
                                 <div class="col">
                                     <label>Tanggal Kapal</label>
-                                    <input type="date" name="tgl_kapal" class="form-control" placeholder="Tanggal Kapal...">                       
+                                    <input type="date" name="tgl_kapal" class="form-control" placeholder="Tanggal Kapal">                       
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="col">
                                     <label>Tanggal Sandar</label>
-                                    <input type="date" name="tgl_sandar" class="form-control" placeholder="Tanggal Sandar...">
+                                    <input type="date" name="tgl_sandar" class="form-control" placeholder="Tanggal Sandar">
                                 </div>
                                 <div class="col">
                                     <label>Tanggal Antar Barang</label>
-                                    <input type="date" name="tgl_antar" class="form-control" placeholder="Tanggal Antar...">                                     
+                                    <input type="date" name="tgl_antar" class="form-control" placeholder="Tanggal Antar">                                     
                                 </div>
                             </div>
                         </form>
  
                         <br>
  
-                        <div class="datagrid-view">
+
+                        {{--barang--}}
+                        
+                        <div class="datagrid-view table-responsive">
                                 {{-- <form method="POST" id="post">
                                 <span id="result"></span>
                                 </form> --}}
                             <table class="table table-bordered table-striped" id="table_barang">
-                                <thead>
+                                <form method="post" id="dynamic_form">
+                                    <span id="result"></span>
+                                    <table class="table table-bordered table-striped" id="user_table">
+                                        <thead>
+                                           <tr>
+                                                <th>Nama Barang</th>
+                                                <th>Satuan Barang</th>
+                                                <th>Jumlah Barang</th>
+                                                <th>Berat Barang</th>
+                                                <th>Panjang Barang</th>
+                                                <th>Lebar Barang</th>
+                                                <th>Tinggi Barang</th>
+                                                <th>Opsi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                       
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7" align="right">&nbsp;</td>
+                                                <td>
+                                                    @csrf
+                                                    <input type="submit" name="save" id="save" class="btn btn-primary" value="Save" />
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </form>
+                                {{-- <thead>
                                     <tr>
                                         <th>Nama Barang</th>
                                         <th>Jumlah Barang</th>
@@ -145,10 +179,10 @@
                                             |
                                             <a href="/penerima/hapus/" class="btn btn-sm btn-danger">Hapus</a>
                                         </th>
-                                    </tr>
+                                    </tr> --}}
                                             
                                      <!-- Contoh Modal -->
-                                    <div class="modal fade" id="modalSaya" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true">
+                                    {{-- <div class="modal fade" id="modalSaya" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -204,8 +238,6 @@
                                                                 <input type="text" name="tinggi_barang" class="form-control" placeholder="Tinggi Barang">
                                                             </div>
                                                         </div>
-                                         
-                                                            {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
                                                     </div>
 
                                                     <div class="modal-footer">
@@ -216,16 +248,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                </tbody>
-                                <tfoot>
+                                </tbody> --}}
+                                {{-- <tfoot>
                                     <td> 
                                         <div class="form-group">  
-                                            {{-- <input type="submit" class="btn btn-primary" value="Add">
-                                            <input type="submit" class="btn btn-danger" value="Remove"> --}}
                                             <input type="submit" class="btn btn-success" value="Simpan">
                                         </div>
                                     </td>
-                                </tfoot>
+                                </tfoot> --}}
                             </table>
                         </div>
                     </div>
@@ -240,3 +270,77 @@
     </body>
 
 </html>
+
+<script>
+    $(document).ready(function(){
+       
+        var count = 1;
+       
+        dynamic_field(count);
+       
+        function dynamic_field(number)
+        {
+            html = '<tr>';
+            html += '<td><input type="text" name="nama_barang[]" class="form-control" /></td>';
+            html += '<td><input type="text" name="satuan_barang[]" class="form-control" /></td>';
+            html += '<td><input type="text" name="jumlah_barang[]" class="form-control" /></td>';
+            html += '<td><input type="text" name="berat_barang[]" class="form-control" /></td>';
+            html += '<td><input type="text" name="panjang_barang[]" class="form-control" /></td>';
+            html += '<td><input type="text" name="lebar_barang[]" class="form-control" /></td>';
+            html += '<td><input type="text" name="tinggi_barang[]" class="form-control" /></td>';
+                if(number > 1)
+               {
+                html += '<td><button type="button" name="remove" id="" class="btn btn-danger remove">Remove</button></td></tr>';
+                   $('tbody').append(html);
+               }
+               else
+               {   
+                   html += '<td><button type="button" name="add" id="add" class="btn btn-success">Add</button></td></tr>';
+                   $('tbody').html(html);
+               }
+        }
+       
+    $(document).on('click', '#add', function(){
+        count++;
+        dynamic_field(count);
+    });
+       
+    $(document).on('click', '.remove', function(){
+        count--;
+        $(this).closest("tr").remove();
+    });
+       
+    $('#dynamic_form').on('submit', function(event){
+        event.preventDefault();
+        $.ajax({
+                    url:'{{ route("dynamic-field.insert") }}',
+                    method:'post',
+                    data:$(this).serialize(),
+                    dataType:'json',
+                    beforeSend:function(){
+                    $('#save').attr('disabled','disabled');
+                    },
+                    success:function(data)
+                    {
+                        if(data.error)
+                        {
+                            var error_html = '';
+                            for(var count = 0; count < data.error.length; count++)
+                            {
+                                error_html += '<p>'+data.error[count]+'</p>';
+                            }
+                            $('#result').html('<div class="alert alert-danger">'+error_html+'</div>');
+                        }
+                        else
+                        {
+                            dynamic_field(1);
+                            $('#result').html('<div class="alert alert-success">'+data.success+'</div>');
+                        }
+                            $('#save').attr('disabled', false);
+                    }
+                })
+            });
+            
+        });
+    </script>
+       

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDynamicField extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,14 +15,9 @@ class CreateDynamicField extends Migration
     {
         Schema::create('dynamic_fields', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama_barang');
-            $table->string('berat_barang');
-            $table->string('panjang_barang');
-            $table->string('lebar_barang');
-            $table->string('tinggi_barang');
-            $table->integer('jumlah_barang');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->timestamps();
-            
         });
     }
 

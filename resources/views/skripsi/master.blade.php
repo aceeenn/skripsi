@@ -42,6 +42,30 @@
               <a class="nav-link" href="#">Laporan</a>
             </li>
             
+            @guest
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+              </li>
+                          
+              @else
+              <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ Auth::user()->name }}
+                </a>
+              
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  {{-- <a class="dropdown-item" href="#">Action</a> --}}
+                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();">Logout</a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                  style="display: none;">
+                  @csrf
+                </form>
+                </div>
+              </div>
+           
+            @endguest
+            </li>
           </ul>
           {{-- <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

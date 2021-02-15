@@ -117,30 +117,59 @@ Route::get('/skripsi', 'SkripsiController@index');
 
 Route::get('/skripsi/cari', 'SkripsiController@cari');
 
-Route::get('/skripsi/barang', 'SkripsiController@barang');
+Auth::routes();
 
-Route::get('/skripsi/tambah_barang', 'SkripsiController@tambah_barang');
+//harus login
+Route::group(['middleware' => ['auth']], function () {
 
-Route::post('/skripsi/store_barang', 'SkripsiController@store_barang');
+    Route::get('/skripsi/barang', 'SkripsiController@barang');
 
-Route::get('/skripsi/penerima', 'SkripsiController@penerima');
+    Route::get('/skripsi/tambah_barang', 'SkripsiController@tambah_barang');
 
-Route::get('/skripsi/pengirim', 'SkripsiController@pengirim');
+    Route::post('/skripsi/store_barang', 'SkripsiController@store_barang');
 
-Route::get('/skripsi/tambah_penerima', 'SkripsiController@tambah_penerima');
+    Route::get('/skripsi/penerima', 'SkripsiController@penerima');
 
-Route::post('/skripsi/store_penerima', 'SkripsiController@store_penerima');
+    Route::get('/skripsi/pengirim', 'SkripsiController@pengirim');
 
-Route::get('/skripsi/tambah_pengirim', 'SkripsiController@tambah_pengirim');
+    Route::get('/skripsi/tambah_penerima', 'SkripsiController@tambah_penerima');
 
-Route::post('/skripsi/store_pengirim', 'SkripsiController@store_pengirim');
+    Route::post('/skripsi/store_penerima', 'SkripsiController@store_penerima');
 
-Route::get('/skripsi/list_resi', 'SkripsiController@list_resi');
+    Route::get('/skripsi/tambah_pengirim', 'SkripsiController@tambah_pengirim');
 
-Route::get('/skripsi/tambah_resi', 'SkripsiController@tambah_resi');
+    Route::post('/skripsi/store_pengirim', 'SkripsiController@store_pengirim');
 
-Route::post('/skripsi/store_resi', 'SkripsiController@store_resi');
+    Route::get('/skripsi/list_resi', 'SkripsiController@list_resi');
+
+    Route::get('/skripsi/tambah_resi', 'SkripsiController@tambah_resi');
+
+    Route::post('/skripsi/store_resi', 'SkripsiController@store_resi');
+
+    Route::get('/skripsi/pengirim/edit-pengirim/{id_pengirim}', 'SkripsiController@edit_pengirim');
+
+    // Route::put('/pengirim/updatepengirim/{id_pengirim}', 'SkripsiController@update_pengirim');
+    Route::match(['get', 'put'], '/updatepengirim/{id_pengirim}', 'SkripsiController@updatepengirim');
+
+    Route::get('/skripsi/pengirim/hapus-pengirim/{id_pengirim}', 'SkripsiController@hapus_pengirim');
+
+    Route::get('/skripsi/penerima/edit-penerima/{id_penerima}', 'SkripsiController@edit_penerima');
+
+    // Route::put('/skripsi/penerima/updatepenerima/{id_penerima}', 'SkripsiController@updatepenerima');
+
+    Route::match(['get', 'put'], '/updatepenerima/{id_penerima}', 'SkripsiController@updatepenerima');
+
+    Route::get('/skripsi/penerima/hapus-penerima/{id_penerima}', 'SkripsiController@hapus_penerima');
+});
+
+//---------------------------------------------------------------------------------------------------------------------
+
+// Route::resource('ajax-crud', 'AjaxController');
+
 
 Route::get('dynamic-field', 'DynamicFieldController@index');
 
 Route::post('dynamic-field/insert', 'DynamicFieldController@insert')->name('dynamic-field.insert');
+
+
+

@@ -11,8 +11,6 @@ class Barang extends Model
 // class Barang extends Migration
 {
 
-    
-
     // public function down (){
     //     Schema::dropIfExists('dynamic_fields');
     // }
@@ -38,9 +36,9 @@ class Barang extends Model
         
     // }
 
-    public function pengirim(){
+    public function transaksis(){
         
-        return $this->hasMany('App\Pengirim');
+        return $this->hasMany('App\Transaksi');
         
     }
 }
