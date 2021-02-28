@@ -10,6 +10,8 @@ use App\Skripsi;
 use App\Penerima;
 use App\Pengirim;
 use App\Barang;
+use App\Resi;
+use App\Transaksi;
 use Str;
 
 class SkripsiController extends Controller
@@ -17,28 +19,35 @@ class SkripsiController extends Controller
 
     public function index(){
 
-        return view ('skripsi.index');
+        $skripsi = DB::table('resi')->paginate(10);
+
+        return view ('skripsi.index', ['skripsi'=>$skripsi]);
     }
 
-    // public function customer(){
+    public function cari(Request $request){
 
-    //     return view ('skripsi.index_customer');
-    // }
+        $cari = $request->cari;
+
+        $skripsi = DB::table('resi')->where('id_resi', 'like', "%".$cari."%")->paginate();
+
+        return view ('skripsi.index', ['skripsi'=>$skripsi]);
+    }
 
     // public function cari(Request $request){
 
     //     $cari = $request->cari;
 
-    //     $skripsi = DB::table('barang')->where('id_barang', 'like', "%".$cari."%")->paginate();
+    //     $skripsi = DB::table('resi')->where('id_resi', 'like', "%".$cari."%")->paginate();
 
-    //     return view ('skripsi.index_customer', ['skripsi'=>$skripsi]);
+    //     return view ('index', ['skripsi'=>$skripsi]);
+
     // }
 
     public function list_resi(){
 
-        $skripsi = Barang::All();
+        $resi = Resi::All();
 
-        return view ('skripsi.list_resi', ['skripsi'=>$skripsi]);
+        return view ('skripsi.list_resi', ['resi'=>$resi]);
     }
 
     public function tambah_resi(){
@@ -48,91 +57,71 @@ class SkripsiController extends Controller
 
         return view ('skripsi.tambah_resi', ['pengirim'=>$pengirim, 'penerima' => $penerima]);
     }
-    function insert (Request $request){
 
-        if ($request->ajax()){
-            $rules= array(
-                'first_name.*'  => 'required',
-                'last_name.*'  => 'required'
-                
-            );
+    public function store_resi(Request $request){
 
-            $error = Validator::make($request->all(), $rules);
-
-            if($error->fails()){
-                return response()->json([
-                    'error' => $error->errors()->all()
-
-                ]);
-            }
-
-            $first_name = $request->first_name;
-            $last_name = $request->last_name;
-          
-
-            for ($count = 0; $count < count ($first_name); $count++){
-                $data = array (
-                    'first_name' => $first_name[$count],
-                    'last_name' => $last_name[$count]
-                    
-                );
-
-                $insert_data[] = $data;
-            }
-
-            DynamicField::insert ($insert_data);
-
-            return response()->json([
-                'success' => 'Data Added Successfully.'
-            ]);
-
-        }
-    }
-
-    public function barang(){
-
-        $skripsi = Barang::paginate(10);
+        $data = $request->all();
         
-        return view ('skripsi.barang', ['skripsi' => $skripsi]);
+        $kode_resi = Resi::get()->count();
+        if($kode_resi <= 0){
+            $kode = $kode_resi+1;
+            // $kode = 0;
+        } else {
+            $kodeResi = Resi::orderBy('id_resi', 'DESC')->first();
+            $kode1 = \substr($kodeResi['id_resi'], -4);
+            $kode = intval($kode1);
+            $kode++;
+        }
+        
+        $id_resi = \str_pad($kode, 4, "0", STR_PAD_LEFT);
+
+        // FUNCTION CREATE ID 
+        $kodeAwal = "STS";
+        $kodeTahun = date('y');
+        $kodeTahunFinal = \substr($kodeTahun, -2);
+        $kodeBulan = date('m');
+
+        $final_id = "$kodeAwal$kodeTahunFinal$kodeBulan$id_resi";
+
+        //input resi
+        $createResi = new Resi;
+        $createResi->id_resi = $final_id;
+        $createResi->nama_pengirim = $data['nama_pengirim'];
+        $createResi->nama_penerima = $data['nama_penerima'];
+        $createResi->tgl_pengiriman = $data['tgl_pengiriman'];
+        $createResi->no_container = $data['no_container'];
+        $createResi->no_sj = $data['no_sj'];
+        $createResi->nama_kapal = $data['nama_kapal'];
+        $createResi->tgl_kapal = $data['tgl_kapal'];
+        
+        $createResi->save();    
+
+        $id_resi1 = Resi::get()->last();
+
+        // dd($data);
+        // die;
+       
+        // data set transaksi 
+        $mutiple_data = [];
+        foreach($data['nama_barang'] as $item => $value){
+            $mutiple_data[ ] = [
+                'id_resi' => $id_resi1->id_resi,
+                'nama_barang' => $data['nama_barang'][$item],
+                'satuan_barang' => $data['satuan_barang'][$item],
+                'jumlah_barang' => $data['jumlah_barang'][$item],
+                'berat_barang' => $data['berat_barang'][$item],
+                'panjang_barang' => $data['panjang_barang'][$item],
+                'lebar_barang' => $data['lebar_barang'][$item],
+                'tinggi_barang' => $data['tinggi_barang'][$item],
+            ];
+         }
+
+        Transaksi::create($mutiple_data);
+    
+        return redirect()->back();
 
     }
-
-    public function tambah_barang(Request $request){
-
-        return view ('skripsi.tambah_barang');
-
-    }
-
-    public function store_barang(Request $request){
-
-        $this->validate($request,[
-            'id_barang'=>'required',
-            'jenis_barang' => 'required',
-            'berat_barang' => 'required',
-            'panjang_barang' => 'required',
-            'lebar_barang' => 'required',
-            'tinggi_barang' => 'required',
-            'jumlah_barang' => 'required',
-            'berat_barang' => 'required',
-            'tanggal_pengiriman' => 'required',
-        ]);
-
-        Barang::create([
-            'id_barang'=>$request->id_barang,
-            'jenis_barang' => $request->jenis_barang,
-            'berat_barang' => $request->berat_barang,
-            'panjang_barang' => $request->panjang_barang,
-            'lebar_barang' =>$request->lebar_barang,
-            'tinggi_barang' =>$request->tinggi_barang,
-            'jumlah_barang' =>$request->jumlah_barang,
-            'berat_barang' =>$request->berat_barang,
-            'tanggal_pengiriman' =>$request->tanggal_pengiriman,
-        ]);
-
-        return redirect ('/skripsi/barang');
-
-    }
-
+    
     public function penerima(){
         
         $skripsi = Penerima::paginate(10);
@@ -171,9 +160,6 @@ class SkripsiController extends Controller
         $nama_penerima_input = $request->nama_penerima;
         $kode_nama = \substr($nama_penerima_input, 0, 3);
         $final_id = Str::upper($kode_nama).$id_penerima;
-
-        // dd($final_id);
-        // die;
 
         Penerima::create([
             'id_penerima' => $final_id,
@@ -341,5 +327,48 @@ class SkripsiController extends Controller
         return redirect ('/skripsi/penerima');
     }
 
-
 }
+
+    // public function barang(){
+
+    //     $skripsi = Barang::paginate(10);
+        
+    //     return view ('skripsi.barang', ['skripsi' => $skripsi]);
+
+    // }
+
+    // public function tambah_barang(Request $request){
+
+    //     return view ('skripsi.tambah_barang');
+
+    // }
+
+    // public function store_barang(Request $request){
+
+    //     $this->validate($request,[
+    //         'id_barang'=>'required',
+    //         'jenis_barang' => 'required',
+    //         'berat_barang' => 'required',
+    //         'panjang_barang' => 'required',
+    //         'lebar_barang' => 'required',
+    //         'tinggi_barang' => 'required',
+    //         'jumlah_barang' => 'required',
+    //         'berat_barang' => 'required',
+    //         'tanggal_pengiriman' => 'required',
+    //     ]);
+
+    //     Barang::create([
+    //         'id_barang'=>$request->id_barang,
+    //         'jenis_barang' => $request->jenis_barang,
+    //         'berat_barang' => $request->berat_barang,
+    //         'panjang_barang' => $request->panjang_barang,
+    //         'lebar_barang' =>$request->lebar_barang,
+    //         'tinggi_barang' =>$request->tinggi_barang,
+    //         'jumlah_barang' =>$request->jumlah_barang,
+    //         'berat_barang' =>$request->berat_barang,
+    //         'tanggal_pengiriman' =>$request->tanggal_pengiriman,
+    //     ]);
+
+    //     return redirect ('/skripsi/barang');
+
+    // }

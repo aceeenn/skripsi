@@ -78,7 +78,7 @@ Route::get('/mahasiswa/edit/{id}', 'MahasiswaController@edit');
 Route::post('/mahasiswa/update', 'MahasiswaController@update');
 
 Route::get('/mahasiswa/hapus/{id}', 'MahasiswaController@hapus');
-
+Route::get('/logout','LoginController@logout');
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->barangme('home');

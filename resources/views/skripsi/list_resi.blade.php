@@ -10,51 +10,54 @@
 
             </div>
             <div class="card-body">
-                {{-- <a href="/skripsi/tambah_penerima" class="btn btn-outline-primary">Tambah Penerima</a> --}}
-                
+                <a href="/skripsi" class="btn btn-outline-primary">Kembali</a>
                 <br>
                 <br>
+
                 <table class="table table-bordered table-hover table-striped">
                     <thead align="center">
                         <tr>
                             <th>No Resi</th>
-                            <th>Nama Barang</th>
-                            <th>Nama Barang</th>
                             <th>Tanggal</th>
                             <th>Nama Pengirim</th>
                             <th>Nama Penerima</th>
+                            <th>Nama Barang</th>
+                            <th>Jumlah Barang</th>
+                            <th>Satuan Barang</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($skripsi as $p)
-                        <tr align="center">
-                            <th>STS2101001</th>
-                            <th>{{$p->nama_barang}}</th>
-                            <th>
-                                @foreach ($p->transaksi as $a)
-                                {{$a->transaksi}},
-                                @endforeach
-                            </th>
-                            <th>01-jan-2021</th>
-                            <th>Ardiansyah</th>
-                            <th>Saldi</th>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    {{-- <tbody>
-                        @foreach($skripsi as $p)
-                            <tr>
+
+                        @foreach($resi as $p)
+                            <tr align="center">
+                                <td>{{$p->id_resi}}</td>
+                                <td>{{$p->tgl_pengiriman}}</td>   
+                                <td>{{$p->nama_pengirim}}</td>
                                 <td>{{$p->nama_penerima}}</td>
-                                <td>{{$p->no_telpon}}</td>
-                                <td>{{$p->alamat}}</td>
-                                <td class="text-center">
-                                    <a href="/penerima/edit/{{$p->id}}" class="btn btn-sm btn-warning">Edit</a>
-                                    |
-                                    <a href="/penerima/hapus/{{$p->id}}" class="btn btn-sm btn-danger">Hapus</a>
+                                <td>
+                                    @foreach($p->transaksi as $t)
+                                    {{$t->nama_barang}},
+                                    @endforeach
                                 </td>
+                                <td>
+                                    @foreach($p->transaksi as $t)
+                                    {{$t->jumlah_barang}},
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($p->transaksi as $t)
+                                    {{$t->satuan_barang}},
+                                    @endforeach
+                                </td>
+                                
+                                
+                                {{-- <td>{{$t->jumlah_barang}}</td>
+                                <td>{{$t->satuan_barang}}</td>  --}}
                             </tr>
                         @endforeach
-                    </tbody> --}}
+                       
+                    </tbody>
+                    
 
                 </table>
 
