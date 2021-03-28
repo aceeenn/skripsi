@@ -28,9 +28,46 @@
 
         <br>
         <img class="img-fluid" src="{{asset('/image/background.jpg')}}">
+        <table class="table table-bordered table-hover table-striped">
+          <br>
+          <br>
+          <thead align="center">
+              <tr>
+                  <th>No Resi</th>
+                  <th>Tanggal</th>
+                  <th>Nama Pengirim</th>
+                  <th>Nama Penerima</th>
+                  <th>Nama Kapal</th>
+                  <th>Tanggal Kapal</th>
+                  <th>Tanggal Sandar</th>
+                  <th>Tanggal Antar</th>
+              </tr>
+          </thead>
+          <tbody>
+
+              @foreach($resi as $p)
+                  <tr align="center">
+                      <td>{{$p->id_resi}}</td>
+                      <td>{{$p->tgl_pengiriman}}</td>
+                      <td>{{$p->nama_pengirim}}</td>   
+                      <td>{{$p->nama_penerima}}</td>
+                      <td>{{$p->nama_kapal}}</td>
+                      <td>{{$p->tgl_kapal}}</td>                            
+                      <td>{{$p->tgl_sandar}}</td>
+                      <td>{{$p->tgl_antar}}</td>                          
+                  </tr>
+              @endforeach
+             
+          </tbody>
+          
+      </table>
         
     <br>
     <br>
+
+    <table>
+          
+    </table>
 
     <div class="row">
       <div class="col-6 col-md-4">

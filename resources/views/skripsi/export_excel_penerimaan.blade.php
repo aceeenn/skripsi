@@ -6,14 +6,14 @@
     <div class="container">
         <div class="card mt-5">
             <div class="card-header text-center">
-                <h4 class="text-bold">Data Resi</h4>
+                <h4 class="text-bold">Laporan Pegiriman</h4>
 
             </div>
             <div class="card-body">
                 {{-- <a href="/skripsi" class="btn btn-outline-primary">Kembali</a> --}}
-                {{-- <a href="/skripsi/export_excel" target="_blank" class="btn btn-success float-right">Export Excel</a> --}}
-                {{-- <br>
-                <br> --}}
+                <a href="/skripsi/export_excel_pengiriman" target="_blank" class="btn btn-success float-right">Export Excel</a>
+                <br>
+                <br>
 
                 <table class="table table-bordered table-hover table-striped">
                     <thead align="center">
@@ -29,6 +29,8 @@
                             <th>No Container</th>
                             <th>Nama Kapal</th>
                             <th>Tanggal Kapal</th>
+                            <th>Tanggal Sandar</th>
+                            <th>Tanggal Antar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,6 +48,8 @@
                                 <td>{{$p->resi->no_container}}</td>
                                 <td>{{$p->resi->nama_kapal}}</td>
                                 <td>{{$p->resi->tgl_kapal}}</td>                            
+                                <td>{{$p->resi->tgl_santar}}</td>
+                                <td>{{$p->resi->tgl_antar}}</td>
                             </tr>
                         @endforeach
                        
@@ -67,3 +71,6 @@
         </ul>
     </nav> 
 @endsection
+<script>
+    window.print();
+</script>

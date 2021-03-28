@@ -10,7 +10,7 @@
         </div>
 
         <div class="card-body">
-            <a href="/pengirim" class="btn btn-primary">Kembali</a>
+            <a href="/skripsi/pengirim" class="btn btn-primary">Kembali</a>
             <br>          
 
             <form method="post" action="/updatepengirim/{{$pengirim->id_pengirim}}" enctype="multipart/form-data">

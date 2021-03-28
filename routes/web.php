@@ -160,6 +160,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::match(['get', 'put'], '/updatepenerima/{id_penerima}', 'SkripsiController@updatepenerima');
 
     Route::get('/skripsi/penerima/hapus-penerima/{id_penerima}', 'SkripsiController@hapus_penerima');
+
+    Route::get('/skripsi/export_excel', 'SkripsiController@export_excel');
+
+    Route::get('/skripsi/laporan_penerimaan', 'SkripsiController@laporan_penerimaan');
+
+    Route::get('/skripsi/laporan_pengiriman', 'SkripsiController@laporan_pengiriman');
 });
 
 //---------------------------------------------------------------------------------------------------------------------

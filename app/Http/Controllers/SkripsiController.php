@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 //panggil model Skripsi
 use App\Skripsi;
@@ -13,41 +14,46 @@ use App\Barang;
 use App\Resi;
 use App\Transaksi;
 use Str;
+use App\Exports\LaporanExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 
 class SkripsiController extends Controller
 {
 
     public function index(){
-
-        $skripsi = DB::table('resi')->paginate(10);
-
-        return view ('skripsi.index', ['skripsi'=>$skripsi]);
+        return view ('skripsi.index');
     }
 
     public function cari(Request $request){
 
         $cari = $request->cari;
+        $resi = DB::table('resi')->where('id_resi', 'like', "%".$cari."%")->paginate();
 
-        $skripsi = DB::table('resi')->where('id_resi', 'like', "%".$cari."%")->paginate();
-
-        return view ('skripsi.index', ['skripsi'=>$skripsi]);
+        // dd($resi);
+        // die;
+        return view ('skripsi.search', ['resi'=>$resi]);
     }
-
-    // public function cari(Request $request){
-
-    //     $cari = $request->cari;
-
-    //     $skripsi = DB::table('resi')->where('id_resi', 'like', "%".$cari."%")->paginate();
-
-    //     return view ('index', ['skripsi'=>$skripsi]);
-
-    // }
 
     public function list_resi(){
 
-        $resi = Resi::All();
+        $resi = Transaksi::with('resi')->get();
 
         return view ('skripsi.list_resi', ['resi'=>$resi]);
+    }
+
+    public function laporan_penerimaan(){
+
+        $resi = Transaksi::with('resi')->get();
+
+        return view ('skripsi.laporan_penerimaan', ['resi'=>$resi]);
+    }
+
+    public function laporan_pengiriman(){
+
+        $resi = Transaksi::with('resi')->get();
+
+        return view ('skripsi.laporan_pengiriman', ['resi'=>$resi]);
     }
 
     public function tambah_resi(){
@@ -238,13 +244,7 @@ class SkripsiController extends Controller
             'alamat' => 'required'
         ]);
 
-        // $pengirim = Pengirim::find($id_pengirim);
-        // $pengirim->nama_pengirim = $request->nama_pengirim;
-        // $pengirim->no_telpon = $request->no_telpon;
-        // $pengirim->alamat = $request->alamat;
-        // $pengirim->save();
-        // return redirect ('/pengirim');
-        // return redirect();
+        
         // update 
         $data = $request->all();
         $updatePengirim = Pengirim::find($id_pengirim);
@@ -327,48 +327,9 @@ class SkripsiController extends Controller
         return redirect ('/skripsi/penerima');
     }
 
+    public function export_excel(){
+
+        return Excel::download(new LaporanExport(), 'laporan.xlsx');
+    }
+
 }
-
-    // public function barang(){
-
-    //     $skripsi = Barang::paginate(10);
-        
-    //     return view ('skripsi.barang', ['skripsi' => $skripsi]);
-
-    // }
-
-    // public function tambah_barang(Request $request){
-
-    //     return view ('skripsi.tambah_barang');
-
-    // }
-
-    // public function store_barang(Request $request){
-
-    //     $this->validate($request,[
-    //         'id_barang'=>'required',
-    //         'jenis_barang' => 'required',
-    //         'berat_barang' => 'required',
-    //         'panjang_barang' => 'required',
-    //         'lebar_barang' => 'required',
-    //         'tinggi_barang' => 'required',
-    //         'jumlah_barang' => 'required',
-    //         'berat_barang' => 'required',
-    //         'tanggal_pengiriman' => 'required',
-    //     ]);
-
-    //     Barang::create([
-    //         'id_barang'=>$request->id_barang,
-    //         'jenis_barang' => $request->jenis_barang,
-    //         'berat_barang' => $request->berat_barang,
-    //         'panjang_barang' => $request->panjang_barang,
-    //         'lebar_barang' =>$request->lebar_barang,
-    //         'tinggi_barang' =>$request->tinggi_barang,
-    //         'jumlah_barang' =>$request->jumlah_barang,
-    //         'berat_barang' =>$request->berat_barang,
-    //         'tanggal_pengiriman' =>$request->tanggal_pengiriman,
-    //     ]);
-
-    //     return redirect ('/skripsi/barang');
-
-    // }

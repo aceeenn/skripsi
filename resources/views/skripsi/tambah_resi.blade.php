@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <a href="/skripsi" class="btn btn-primary">Kembali</a>
                     <br>
-                    <br>
+                    <br>                   
  
                     <div class="form-group">
                         <form method="POST" action="/skripsi/store_resi">
